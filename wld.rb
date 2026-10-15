@@ -48,11 +48,9 @@ class Category
   end
 
   def sort!
-    @children.sort_by! do |child|
-      type_rank = child.is_a?(Category) ? 1 : 0
-      [type_rank, child.name.downcase]
-    end
-    @children.each { |child| child.sort! if child.is_a?(Category) }
+    categories, links = @children.partition { |child| child.is_a?(Category) }
+    @children.replace(links.sort_by { |link| link.name.downcase } + categories)
+    categories.each(&:sort!)
   end
 
   def to_s
@@ -75,7 +73,6 @@ class Links
   end
 
   def sort!
-    @categories.sort_by! { |c| c.name.downcase }
     @categories.each(&:sort!)
     self
   end

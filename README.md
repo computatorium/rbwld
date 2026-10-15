@@ -1,7 +1,7 @@
 # rbwld
 rbwld is a small DSL for creating DokuWiki compatible lists of links.
 
-Think of it like a programmatic bookmark manager. The central `Links` instance
+Think of it like a declarative bookmark manager. The central `Links` instance
 contains `Category` instances which represent categories and subcategories of links.
 Within each `Category` you can have more categories along with `Link` instances which
 represent individually listed websites. The output is directly usable within DokuWiki.
